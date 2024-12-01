@@ -1,9 +1,10 @@
 import React from 'react'
 
-const page = () => {
+const Document = () => {
   return (
-    <div>page</div>
+    <div>Document</div>
   )
 }
 
-export default page
+
+export default Document
