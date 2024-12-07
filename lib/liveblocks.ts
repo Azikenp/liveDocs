@@ -1,5 +1,7 @@
 import { Liveblocks } from "@liveblocks/node";
 
 const liveblocks = new Liveblocks({
-    secret: "sk_prod_xxxxxxxxxxxxxxxxxxxxxxxx",
-  });
+  secret: process.env.LIVEBLOCKS_SECRET_KEY as string,
+});
+
+export const liveblocks;
