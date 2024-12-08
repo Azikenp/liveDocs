@@ -55,7 +55,7 @@ export const getDocument = async ({
 
     return parseStringify(room);
   } catch (error) {
-    console.log(`Error happened while gettin a room${error}`);
+    console.log(`Error happened while gettin a room ${error}`);
   }
 };
 
@@ -72,5 +72,20 @@ export const updateDocument = async (roomId: string, title: string) => {
     return parseStringify(updateDocument);
   } catch (error) {
     console.log(`Error happened while updating a room ${error}`);
+  }
+};
+
+export const getDocuments = async (email: string) => {
+  try {
+    const rooms = await liveblocks.getRooms({ userId: email });
+    // const hasAccess = Object.keys(room.usersAccesses).includes(userId);
+
+    // if (!hasAccess) {
+    //   throw new Error("You do not have access to this document");
+    // }
+
+    return parseStringify(rooms);
+  } catch (error) {
+    console.log(`Error happened while gettin rooms ${error}`);
   }
 };
