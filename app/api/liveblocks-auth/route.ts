@@ -1,14 +1,9 @@
-// import { liveblocks } from "@/lib/liveblocks";
-import { Liveblocks } from "@liveblocks/node";
+import { liveblocks } from "@/lib/liveblocks";
 import { getUserColor } from "@/lib/utils";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export async function POST(request: Request) {
-  const liveblocks = new Liveblocks({
-    secret: process.env.LIVEBLOCKS_SECRET_KEY as string,
-  });
-  
   const clerkUser = await currentUser();
 
   if (!clerkUser) redirect("/sign-in");
