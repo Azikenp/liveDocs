@@ -11,7 +11,9 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import React from "react";
 
-import { liveblocksConfig } from "@liveblocks/react-lexical";
+import { liveblocksConfig, useEditorStatus } from "@liveblocks/react-lexical";
+import Loader from "../Loader";
+import FloatingToolbar from "./plugins/FloatingToolbarPlugin";
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -28,6 +30,8 @@ export function Editor({
   roomId: string;
   currentUserType: UserType;
 }) {
+  const status = useEditorStatus();
+
   const initialConfig = liveblocksConfig({
     namespace: "Editor",
     nodes: [HeadingNode],
@@ -44,18 +48,26 @@ export function Editor({
       <div className="editor-container size-full">
         <div className="toolbar-wrapper flex min-w-full justify-between">
           <ToolbarPlugin />
+          {/* {currentUserType === 'editor' && <DeleteModal roomId={roomId} />} */}
         </div>
 
-        <div className="editor-inner h-[1100px]">
-          <RichTextPlugin
-            contentEditable={
-              <ContentEditable className="editor-input h-full" />
-            }
-            placeholder={<Placeholder />}
-            ErrorBoundary={LexicalErrorBoundary}
-          />
-          <HistoryPlugin />
-          <AutoFocusPlugin />
+        <div className="editor-wrapper flex flex-col items-center justify-start">
+          {status === "not-loaded" || status === "loading" ? (
+            <Loader />
+          ) : (
+            <div className="editor-inner min-h-[1100px] relative mb-5 h-fit w-full max-w-[800px] shadow-md lg:mb-10">
+              <RichTextPlugin
+                contentEditable={
+                  <ContentEditable className="editor-input h-full" />
+                }
+                placeholder={<Placeholder />}
+                ErrorBoundary={LexicalErrorBoundary}
+              />
+              {currentUserType === 'editor' && <FloatingToolbar />}
+              <HistoryPlugin />
+              <AutoFocusPlugin />
+            </div>
+          )}
         </div>
       </div>
     </LexicalComposer>
