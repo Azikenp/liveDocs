@@ -33,8 +33,8 @@ const Document = async ({ params: { id } }: SearchParamProps) => {
     ? "editor"
     : "viewer";
 
-  // console.log("Room:", room);
-  // console.log("Users:", users);
+  console.log("Room:", room);
+  console.log("Users:", users);
 
   return (
     <main className="flex w-full flex-col items-center">
