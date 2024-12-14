@@ -65,7 +65,7 @@ export function Editor({
               />
               {currentUserType === 'editor' && <FloatingToolbar />}
               <HistoryPlugin />
-              {/* <AutoFocusPlugin /> */}
+              <AutoFocusPlugin />
             </div>
           )}
         </div>
