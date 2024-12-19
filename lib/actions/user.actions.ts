@@ -10,7 +10,7 @@ export const getClerkUsers = async ({ userIds }: { userIds: string[] }) => {
       emailAddress: userIds,
     });
 
-    const users = data.map((user) => ({
+    const users = data.map((user : any) => ({
       id: user.id,
       name: `${user.firstName} ${user.lastName}`,
       email: user.emailAddresses[0].emailAddress,
@@ -18,7 +18,7 @@ export const getClerkUsers = async ({ userIds }: { userIds: string[] }) => {
     }));
 
     const sortedUsers = userIds.map((email) =>
-      users.find((user) => user.email === email)
+      users.find((user: any) => user.email === email)
     );
 
     return parseStringify(sortedUsers);
