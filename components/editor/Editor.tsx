@@ -80,7 +80,7 @@ export function Editor({
 
           <LiveblocksPlugin>
             <FloatingComposer className="min-w-[350px]" />
-            <FloatingThreads threads={threads} />
+            {/* <FloatingThreads threads={threads} /> */}
             <Comments />
           </LiveblocksPlugin>
         </div>
