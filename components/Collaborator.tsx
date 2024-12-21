@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState } from "react";
 
-const Collaborator = () => {
-  return (
-    <div>Collaborator</div>
-  )
-}
+const Collaborator = ({
+  roomId,
+  creatorId,
+  collaborator,
+  email,
+  user,
+}: CollaboratorProps) => {
+  const [userType, setUserType] = useState(collaborator.userType || "viewer");
+  const [loading, setLoading] = useState(false);
 
-export default Collaborator
+  const shareDocumentHandler = async (type: string) => {};
+  const removeCollaboratorHandler = async (email: string) => {};
+
+  return <div>Collaborator</div>;
+};
+
+export default Collaborator;
