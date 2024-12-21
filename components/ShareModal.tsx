@@ -2,13 +2,15 @@ import { useSelf } from "@liveblocks/react/suspense";
 import React, { useState } from "react";
 
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-  } from "@/components/ui/dialog"
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import Image from "next/image";
+import { Button } from "./ui/button";
 
 const ShareModal = ({
   roomId,
@@ -26,19 +28,31 @@ const ShareModal = ({
 
   const shareDocumentHandler = async () => {};
 
-  return <Dialog>
-  <DialogTrigger>Open</DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Are you absolutely sure?</DialogTitle>
-      <DialogDescription>
-        This action cannot be undone. This will permanently delete your account
-        and remove your data from our servers.
-      </DialogDescription>
-    </DialogHeader>
-  </DialogContent>
-</Dialog>
-
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger>
+        <Button>
+          <Image
+            src="/assets/icons/share.svg"
+            alt="share"
+            width={20}
+            height={20}
+            className= "min-w-4 md:size-5"
+          />
+          <p className="mr-1 hidden sm:block"></p>
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  );
 };
 
 export default ShareModal;
