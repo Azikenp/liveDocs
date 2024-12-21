@@ -1,3 +1,5 @@
+'use client'
+
 import { useSelf } from "@liveblocks/react/suspense";
 import React, { useState } from "react";
 
