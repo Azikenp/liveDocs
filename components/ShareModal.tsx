@@ -1,6 +1,15 @@
 import { useSelf } from "@liveblocks/react/suspense";
 import React, { useState } from "react";
 
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
+
 const ShareModal = ({
   roomId,
   collaborators,
@@ -15,11 +24,21 @@ const ShareModal = ({
   const [email, setEmail] = useState("");
   const [userType, setUserType] = useState<UserType>("viewer");
 
-  const shareDocumentHandler = async () => {
-    
-  }
+  const shareDocumentHandler = async () => {};
 
-  return <div>ShareModal</div>;
+  return <Dialog>
+  <DialogTrigger>Open</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Are you absolutely sure?</DialogTitle>
+      <DialogDescription>
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+
 };
 
 export default ShareModal;
