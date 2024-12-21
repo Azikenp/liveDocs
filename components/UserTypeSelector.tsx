@@ -15,6 +15,7 @@ const UserTypeSelector = ({
     setUserType(type);
     onClickHandler && onClickHandler(type);
   };
+
   return (
     <Select
       value={userType}
