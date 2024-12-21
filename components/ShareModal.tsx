@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useSelf } from "@liveblocks/react/suspense";
 import React, { useState } from "react";
@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/dialog";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 const ShareModal = ({
   roomId,
@@ -54,6 +56,21 @@ const ShareModal = ({
             Select which users can view and edit this document.
           </DialogDescription>
         </DialogHeader>
+
+        <Label htmlFor="email" className="mt-6 to-blue-100">
+          Email Address
+        </Label>
+        <div className="flex items-center gap-3">
+          <div className="flex flex-1 rounded-md bg-dark-400">
+            <Input
+              id="email"
+              value={email}
+              placeholder="Enter Email Address"
+              onChange={(e) => setEmail(e.target.value)}
+              className="share-input"
+            />
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );
