@@ -5,19 +5,21 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { InboxNotificationList, LiveblocksUIConfig } from "@liveblocks/react-ui";
 import {
   useInboxNotifications,
   useUnreadInboxNotificationsCount,
-} from "@liveblocks/react";
+} from "@liveblocks/react/suspense";
 import Image from "next/image";
+import { ReactNode } from "react";
 
 const Notifications = () => {
   const { inboxNotifications } = useInboxNotifications();
   const { count } = useUnreadInboxNotificationsCount();
 
-//   const unreadNotifications = inboxNotifications.filter(
-//     (notification) => !notification.readAt
-//   );
+  const unreadNotifications = inboxNotifications.filter(
+    (notification) => !notification.readAt
+  );
 
   return (
     <Popover>
@@ -28,8 +30,21 @@ const Notifications = () => {
           width={24}
           height={24}
         />
+        {count === 0 && (
+          <div className="absolute right-2 top-2 z-20 size-2 rounded-full bg-blue-500"></div>
+        )}
       </PopoverTrigger>
-      <PopoverContent>Place content for the popover here.</PopoverContent>
+      <PopoverContent align="end" className="shad-popover">
+        <LiveblocksUIConfig
+          overrides={{
+            INBOX_NOTIFICATION_TEXT_MENTION: (user: ReactNode) => (
+              <>{user} mentioned you</>
+            ),
+          }}
+        />
+
+        <InboxNotificationList>{unreadNotifications.length <= 0 && <p className="py-2 text-center text-dark-500">No new notifications</p>}</InboxNotificationList>
+      </PopoverContent>
     </Popover>
   );
 };
