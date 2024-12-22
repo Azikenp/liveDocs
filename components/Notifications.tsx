@@ -5,7 +5,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { InboxNotificationList, LiveblocksUIConfig } from "@liveblocks/react-ui";
+import {
+  InboxNotification,
+  InboxNotificationList,
+  LiveblocksUIConfig,
+} from "@liveblocks/react-ui";
 import {
   useInboxNotifications,
   useUnreadInboxNotificationsCount,
@@ -43,7 +47,41 @@ const Notifications = () => {
           }}
         />
 
-        <InboxNotificationList>{unreadNotifications.length <= 0 && <p className="py-2 text-center text-dark-500">No new notifications</p>}</InboxNotificationList>
+        <InboxNotificationList>
+          {unreadNotifications.length <= 0 && (
+            <p className="py-2 text-center text-dark-500">
+              No new notifications
+            </p>
+          )}
+          {unreadNotifications.length > 0 &&
+            unreadNotifications.map((notification) => (
+              <InboxNotification
+                key={notification.id}
+                inboxNotification={notification}
+                className="bg-dark-200 text-white"
+                href={`/documents/${notification.roomId}`}
+                showActions={false}
+                kinds={{
+                  thread: (props) => {
+                    <InboxNotification.Thread
+                      {...props}
+                      showActions={false}
+                      showRoomName={false}
+                    />;
+                  },
+                  textMention: (props) => {
+                    <InboxNotification.TextMention
+                      {...props}
+                      showRoomName={false}
+                    />;
+                  },
+                  $documentAccess: (props) => {
+                    <InboxNotification.Custom />
+                  }
+                }}
+              />
+            ))}
+        </InboxNotificationList>
       </PopoverContent>
     </Popover>
   );
