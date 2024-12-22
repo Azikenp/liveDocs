@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import { deleteDocument } from "@/lib/actions/room.actions";
-
 import {
   Dialog,
   DialogClose,
@@ -17,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 
 import { Button } from "./ui/button";
+import { deleteDocument } from "@/lib/actions/room-actions";
 
 export const DeleteModal = ({ roomId }: DeleteModalProps) => {
   const [open, setOpen] = useState(false);
