@@ -1,9 +1,37 @@
-import React from 'react'
+"use client";
+
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  useInboxNotifications,
+  useUnreadInboxNotificationsCount,
+} from "@liveblocks/react";
+import Image from "next/image";
 
 const Notifications = () => {
-  return (
-    <div>Notifications</div>
-  )
-}
+  const { inboxNotifications } = useInboxNotifications();
+  const { count } = useUnreadInboxNotificationsCount();
 
-export default Notifications
+//   const unreadNotifications = inboxNotifications.filter(
+//     (notification) => !notification.readAt
+//   );
+
+  return (
+    <Popover>
+      <PopoverTrigger className="relative flex size-10 items-center justify-center rounded-lg">
+        <Image
+          src="/assets/icons/bell.svg"
+          alt="inbox"
+          width={24}
+          height={24}
+        />
+      </PopoverTrigger>
+      <PopoverContent>Place content for the popover here.</PopoverContent>
+    </Popover>
+  );
+};
+
+export default Notifications;
