@@ -113,6 +113,7 @@ export const updateDocumentAccess = async ({
           avatar: updatedBy.avatar,
           email: updatedBy.email,
         },
+        roomId,
       });
     }
 
