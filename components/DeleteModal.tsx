@@ -58,7 +58,7 @@ export const DeleteModal = ({ roomId }: DeleteModalProps) => {
           />
           <DialogTitle>Delete document</DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete this document? This action is permananet and cannot be undone.
+            Are you sure you want to delete this document? This action is permanent and cannot be undone.
           </DialogDescription>
         </DialogHeader>
 
