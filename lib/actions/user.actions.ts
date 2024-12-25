@@ -10,7 +10,7 @@ export const getClerkUsers = async ({ userIds }: { userIds: string[] }) => {
       emailAddress: userIds,
     });
 
-    const users = data.map((users) => ({
+    const users = data.map((user) => ({
       id: user.id,
       name: `${user.firstName} ${user.lastName}`,
       email: user.emailAddresses[0].emailAddress,
